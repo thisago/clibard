@@ -20,33 +20,47 @@ Core libs used
 ## Setup
 
 You can install using nimble, the [Nim](https://nim-lang.org) package manager:
+
 ```bash
 nimble install clibard
-# or
-nimble install https://github.com/thisago/clibard
 ```
 
 To Gookie be able to get your Google session, you'll need to install an client
-userscript in your browser: [client.user.js](https://github.com/thisago/gookie/blob/master/src/client.user.js)
+extension in your browser.
+See the [tutorial at Gookie repository](https://github.com/thisago/gookie#usage)
 
-> **Note**
-> You need a userscript manager extension in your web browser
-
-Now, just [login into your Google account](https://accounts.google.com) and keep open an [Google homepage](https://www.google.com) tab.
+Now, just [login into your Google account](https://accounts.google.com) and keep
+open the browser
 
 ## Usage
 
 **Help**
 
-```bash
-clibard --help
 ```
-<!-- 
+$ clibard --help
+
+Google Bard CLI
+Usage:
+  clibard {SUBCMD}  [sub-command options & parameters]
+where {SUBCMD} is one of:
+  help    print comprehensive or per-cmd help
+  prompt  Prompts to Google Bard
+  chat    Start chat with Google Bard
+```
+
 The usage is very simple:
 
+**Single**
+
 ```bash
-clibard prompt 
-``` -->
+clibard prompt what is motherboard?
+```
+
+**Chat**
+
+```bash
+clibard chat
+```
 
 ## License
 
