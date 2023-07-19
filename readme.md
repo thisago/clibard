@@ -10,6 +10,10 @@
 
 ## About
 
+See this app in action here:
+- [`clibard prompt`][promptVideo]
+- [`clibard chat`][chatVideo]
+
 This is a Google Bard CLI application interface.
 
 Core libs used
@@ -50,13 +54,13 @@ where {SUBCMD} is one of:
 
 The usage is very simple:
 
-**Single**
+[**Single prompt**][promptVideo]
 
 ```bash
 clibard prompt what is motherboard?
 ```
 
-**Chat**
+[**Chat**][chatVideo]
 
 ```bash
 clibard chat
@@ -65,3 +69,6 @@ clibard chat
 ## License
 
 This CLI application is open source, licensed over GPL-3
+
+[promptVideo]: https://asciinema.org/a/arKZvChGMDRVrfSedhn99PUrz
+[chatVideo]: https://asciinema.org/a/QimervgyaSki9wF7V0zfZnrL1
