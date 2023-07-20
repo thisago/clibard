@@ -4,7 +4,7 @@
 
 #### Command line interface for Google Bard
 
-**[About](#about) - [Usage](#usage)** - [License](#license)
+**[About](#about) - [Setup](#setup) - [Usage](#usage)** - [License](#license)
 
 </div>
 
