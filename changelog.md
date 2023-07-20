@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.3.0 (2023/07/20)
+
+- Added fast typing simulation with `-f`
+
 ## Version 0.2.0 (2023/07/19)
 
 - Fixed error handling

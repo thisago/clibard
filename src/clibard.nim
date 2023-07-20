@@ -24,19 +24,23 @@ proc startNewBardChat: BardAiChat =
   result = newBardAiChat ai
 
 
-proc typingEcho(s: string; instant = false) =
+proc typingEcho(s: string; instant = false; fast = false) =
   if instant:
     echo s
   else:
     for ch in s:
       stdout.write ch
       flushFile stdout
-      case ch:
-      of '\n': sleep rand 100..500
-      of ' ': sleep rand 30..100
-      else: sleep rand 10..50
+      sleep rand(
+        if fast:
+          case ch:
+          of '\n': 10..50
+          of ' ': 3..10
+          else: 1..10
+        else: 1..10
+      )
 
-proc cliPrompt(texts: seq[string]; instant = false) =
+proc cliPrompt(texts: seq[string]; instant = false; fast = false) =
   ## Prompts to Google Bard
   var chat = startNewBardChat()
   let text = texts.join " "
@@ -47,7 +51,7 @@ proc cliPrompt(texts: seq[string]; instant = false) =
   except BardExpiredSession:
     cliPrompt(@[text])
 
-proc cliChat(instant = false) =
+proc cliChat(instant = false; fast = false) =
   ## Start chat with Google Bard
   ## 
   ## Close with ".exit"
