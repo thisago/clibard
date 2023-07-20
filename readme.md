@@ -57,7 +57,7 @@ The usage is very simple:
 [**Single prompt**][promptVideo]
 
 ```bash
-clibard prompt what is motherboard?
+clibard prompt "what is ram memory?"
 ```
 
 [**Chat**][chatVideo]
@@ -70,5 +70,5 @@ clibard chat
 
 This CLI application is open source, licensed over GPL-3
 
-[promptVideo]: https://asciinema.org/a/arKZvChGMDRVrfSedhn99PUrz
-[chatVideo]: https://asciinema.org/a/QimervgyaSki9wF7V0zfZnrL1
+[promptVideo]: https://asciinema.org/a/b7rYNqm3iuqhT4kb7spy8PnSI
+[chatVideo]: https://asciinema.org/a/SF2geUHJwsBgbSdrOgvME0ZLS

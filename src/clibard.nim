@@ -23,44 +23,48 @@ proc startNewBardChat: BardAiChat =
   echo "Google Bard instance sucessfully created!"
   result = newBardAiChat ai
 
-template withBardChat(body: untyped): untyped =
-  ## Run code with authenticated Bard session
-  try:
-    body
-  except Exception:
-    chat = startNewBardChat()
 
-proc typingEcho(s: string) =
-  for ch in s:
-    stdout.write ch
-    flushFile stdout
-    case ch:
-    of '\n': sleep rand 300..600
-    of ' ': sleep rand 50..200
-    else: sleep rand 20..70
+proc typingEcho(s: string; instant = false) =
+  if instant:
+    echo s
+  else:
+    for ch in s:
+      stdout.write ch
+      flushFile stdout
+      case ch:
+      of '\n': sleep rand 100..500
+      of ' ': sleep rand 30..100
+      else: sleep rand 10..50
 
-proc cliPrompt(texts: seq[string]) =
+proc cliPrompt(texts: seq[string]; instant = false) =
   ## Prompts to Google Bard
   var chat = startNewBardChat()
   let text = texts.join " "
-  withBardChat:
+  try:
     let response = waitFor chat.prompt text
-    typingEcho response.text
+    echo "\l"
+    typingEcho response.text, instant
+  except BardExpiredSession:
+    cliPrompt(@[text])
 
-proc cliChat =
+proc cliChat(instant = false) =
   ## Start chat with Google Bard
   ## 
   ## Close with ".exit"
   var chat = startNewBardChat()
+  echo "\l==Chat started==\l"
   while true:
-    stdout.write "\lYou: "
+    stdout.write "You: "
     let text = readLine stdin
     if text == ".exit":
       break
-    withBardChat:
+    try:
       let response = waitFor chat.prompt text
-      stdout.write "\lBard: "
-      typingEcho response.text
+      stdout.write "Bard: "
+      typingEcho response.text, instant
+      echo "\l"
+    except BardExpiredSession:
+      cliPrompt(@[text])
 
 when isMainModule:
   import pkg/cligen
