@@ -20,7 +20,7 @@ proc startNewBardChat: BardAiChat =
     psid = cookies["__Secure-1PSID"],
     psidts = cookies["__Secure-1PSIDTS"]
   )
-  echo "Google Bard instance sucessfully created!"
+  echo "Google Bard instance successfully created!"
   result = newBardAiChat ai
 
 
