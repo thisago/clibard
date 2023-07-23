@@ -32,7 +32,7 @@ proc typingEcho(s: string; instant = false; fast = false) =
       stdout.write ch
       flushFile stdout
       sleep rand(
-        if fast:
+        if not fast:
           case ch:
           of '\n': 10..50
           of ' ': 3..10

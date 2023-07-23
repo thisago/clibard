@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.3.1 (2023/07/23)
+
+- Fixed fast mode
+
 ## Version 0.3.0 (2023/07/20)
 
 - Added fast typing simulation with `-f`
