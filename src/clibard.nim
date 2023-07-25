@@ -36,8 +36,8 @@ proc typingEcho(s: string; instant = false; fast = false) =
           case ch:
           of '\n': 10..50
           of ' ': 3..10
-          else: 1..10
-        else: 1..10
+          else: 5..20
+        else: 1..5
       )
 
 proc cliPrompt(texts: seq[string]; instant = false; fast = false) =
@@ -46,9 +46,10 @@ proc cliPrompt(texts: seq[string]; instant = false; fast = false) =
   let text = texts.join " "
   try:
     let response = waitFor chat.prompt text
-    echo "\l"
+    echo ""
     typingEcho response.text, instant
   except BardExpiredSession:
+    echo getCurrentExceptionMsg()
     cliPrompt(@[text])
 
 proc cliChat(instant = false; fast = false) =

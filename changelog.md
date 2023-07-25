@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.3.2 (2023/07/25)
+
+- Fixed typing delay
+- Removed duplicated line break in prompt function
+
 ## Version 0.3.1 (2023/07/23)
 
 - Fixed fast mode
