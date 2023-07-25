@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.4.0 (2023/07/25)
+
+- Instant prompt by default
+- Changed close command from ".exit" to "exit"
+- Added silent mode
+- Fixed re-prompt when error
+
 ## Version 0.3.2 (2023/07/25)
 
 - Fixed typing delay
