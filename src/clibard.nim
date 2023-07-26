@@ -28,7 +28,7 @@ proc startNewBardChat(silent = false): BardAiChat =
 
 
 proc typingEcho(s: string; instant = false; fast = false) =
-  if instant:
+  if instant and not fast:
     echo s
   else:
     for ch in s:
@@ -49,7 +49,7 @@ proc cliPrompt(texts: seq[string]; instant = true; fast = false; silent = true) 
   let text = texts.join " "
   try:
     let response = waitFor chat.prompt text
-    typingEcho response.text, instant
+    typingEcho(response.text, instant, fast)
   except BardExpiredSession:
     cliPrompt(@[text], instant, fast, silent)
 
@@ -67,7 +67,7 @@ proc cliChat(instant = false; fast = false; silent = false) =
     try:
       let response = waitFor chat.prompt text
       stdout.write "Bard: "
-      typingEcho response.text, instant
+      typingEcho(response.text, instant, fast)
       echo "\l"
     except BardExpiredSession:
       cliPrompt(@[text], false, fast, silent)

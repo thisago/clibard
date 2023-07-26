@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.4.1 (2023/07/26)
+
+- Fixed fast mode
+
 ## Version 0.4.0 (2023/07/25)
 
 - Instant prompt by default
