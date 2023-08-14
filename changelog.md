@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.5.0 (2023/08/14)
+
+- Now using `gookie@0.5.0`!
+- Added support for multi login (fallback)
+- Added blank prompt ignore
+
 ## Version 0.4.1 (2023/07/26)
 
 - Fixed fast mode
