@@ -71,4 +71,4 @@ clibard chat
 This CLI application is open source, licensed over GPL-3
 
 [promptVideo]: https://asciinema.org/a/Bpc3fE1YwgfEUrqUwI9FlS8ky
-[chatVideo]: https://asciinema.org/a/AK1DBoLbNITdg6iCEmgAufXVD
+[chatVideo]: https://asciinema.org/a/GKS9Scaza5c1powm8jypQrGAN

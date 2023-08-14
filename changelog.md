@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.7.0 (2023/08/14)
+
+- Added colors to chat
+- Bard setup debug logging default hidden in chat
+
 ## Version 0.6.0 (2023/08/14)
 
 - Added drafts
