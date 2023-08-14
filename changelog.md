@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.5.1 (2023/08/14)
+
+- Updated to `bard@0.7.0`
+
 ## Version 0.5.0 (2023/08/14)
 
 - Now using `gookie@0.5.0`!

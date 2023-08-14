@@ -20,14 +20,13 @@ proc startNewBardChat(silent = false): BardAiChat =
         echo fmt"Skipping '{cookies.context}' because it didn't worked."
       continue
     testedSessions.add cookies.context
-    if (cookies.hasKey("__Secure-1PSID") and cookies.hasKey "__Secure-1PSIDTS"):
+    if cookies.hasKey "__Secure-1PSID":
       if not silent:
         echo fmt"Trying '{cookies.context}' cookies..."
+      if not silent and not cookies.hasKey "__Secure-1PSIDTS":
+        echo fmt"Warning, without '__Secure-1PSIDTS' cookie, probably it won't work."
       try:
-        let ai = waitFor newBardAi(
-          psid = cookies["__Secure-1PSID"],
-          psidts = cookies["__Secure-1PSIDTS"]
-        )
+        let ai = waitFor newBardAi $cookies
         if not silent:
           echo "Google Bard instance successfully created!\n"
         return newBardAiChat ai
@@ -58,7 +57,7 @@ proc typingEcho(s: string; instant = false; fast = false) =
 proc handleUnrecognizableResp =
   let err = getCurrentException()
   if err.name == $BardUnrecognizedResp:
-    echo "Bard sent an unrecognizable response: " & err.msg
+    echo err.msg
 
 
 proc cliPrompt(texts: seq[string]; instant = true; fast = false; silent = true) =
