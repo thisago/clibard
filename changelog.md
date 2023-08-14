@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.6.0 (2023/08/14)
+
+- Added drafts
+- Added related searches
+
 ## Version 0.5.1 (2023/08/14)
 
 - Updated to `bard@0.7.0`

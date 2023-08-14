@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.5.1"
+version       = "0.6.0"
 author        = "Thiago Navarro"
 description   = "Command line interface for Google Bard"
 license       = "GPL-3.0"

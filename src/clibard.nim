@@ -4,6 +4,7 @@ from std/strutils import join
 from std/os import sleep
 from std/random import randomize, rand
 from std/strformat import fmt
+from std/sugar import collect
 
 import pkg/bard
 import pkg/gookie
@@ -30,7 +31,7 @@ proc startNewBardChat(silent = false): BardAiChat =
         if not silent:
           echo "Google Bard instance successfully created!\n"
         return newBardAiChat ai
-      except BardCantGetSnlm0e:
+      except BardCantGetSnlm0e, BardCantGetCfb2h:
         echo fmt"Cannot login with '{cookies.context}' cookies"
     else:
       if not silent:
@@ -40,7 +41,7 @@ proc startNewBardChat(silent = false): BardAiChat =
 
 proc typingEcho(s: string; instant = false; fast = false) =
   if instant and not fast:
-    echo s
+    stdout.write s
   else:
     for ch in s:
       stdout.write ch
@@ -48,11 +49,12 @@ proc typingEcho(s: string; instant = false; fast = false) =
       sleep rand(
         if not fast:
           case ch:
-          of '\n': 60..100
-          of ' ': 20..60
-          else: 10..30
+          of '\n': 70..120
+          of ' ': 30..60
+          else: 10..20
         else: 1..5
       )
+  echo ""
 
 proc handleUnrecognizableResp =
   let err = getCurrentException()
@@ -72,26 +74,44 @@ proc cliPrompt(texts: seq[string]; instant = true; fast = false; silent = true) 
       handleUnrecognizableResp()
       cliPrompt(@[text], instant, fast, silent)
 
-proc cliChat(instant = false; fast = false; silent = false) =
+proc cliChat(instant = false; fast = false; silent = false; extraInfo = true) =
   ## Start chat with Google Bard
   ## 
   ## Close with "exit"
   var chat = startNewBardChat silent
   echo "==Chat started==\l"
-  while true:
-    stdout.write "You: "
-    let text = readLine stdin
-    if text.len > 0:
-      if text == "exit":
-        break
-      try:
-        let response = waitFor chat.prompt text
-        stdout.write "Bard: "
-        typingEcho(response.text, instant, fast)
-        echo "\l"
-      except BardExpiredSession, BardUnrecognizedResp:
-        handleUnrecognizableResp()
-        cliPrompt(@[text], false, fast, silent)
+  var lastDrafts: seq[BardAiResponseDraft]
+  block loop:
+    while true:
+      block prompt:
+        stdout.write "You: "
+        let text = readLine stdin
+        if text.len > 0:
+          if text == "exit":
+            break loop
+          if text.len > 2 and text[0..2] == "rc_":
+            for draft in lastDrafts:
+              if text == draft.id:
+                stdout.write "Bard draft: "
+                typingEcho(draft.text, instant, fast)
+                echo ""
+                break prompt
+            echo "Draft not found.\l"
+            break prompt
+
+          try:
+            let response = waitFor chat.prompt text
+            lastDrafts = response.drafts
+            stdout.write "Bard: "
+            typingEcho(response.text, instant, fast)
+            if extraInfo:
+              echo "---"
+              echo "Related: " & collect(for srx in response.relatedSearches: fmt"'{srx}'").join ", "
+              echo "Cached drafts: " & collect(for draft in response.drafts: fmt"'{draft.id}'").join ", "
+            echo ""
+          except BardExpiredSession, BardUnrecognizedResp:
+            handleUnrecognizableResp()
+            cliPrompt(@[text], false, fast, silent)
 
 when isMainModule:
   import pkg/cligen
