@@ -16,7 +16,7 @@ var testedSessions: seq[string]
 proc startNewBardChat(debugLog = false): BardAiChat =
   if debugLog:
     echo "Trying to get your Google sessions"
-  let cookiesList = ieCook "https;//google.com"
+  let cookiesList = ieCook "https://google.com"
   for cookies in cookiesList:
     if cookies.context in testedSessions:
       if debugLog:
