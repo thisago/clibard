@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.7.0"
+version       = "0.7.1"
 author        = "Thiago Navarro"
 description   = "Command line interface for Google Bard"
 license       = "GPL-3.0"
@@ -16,4 +16,4 @@ requires "nim >= 1.6.0"
 requires "cligen"
 
 requires "bard >= 0.7.0"
-requires "gookie >= 0.5.0"
+requires "iecook >= 0.6.0"

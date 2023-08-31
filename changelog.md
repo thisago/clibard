@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.7.0 (2023/08/31)
+
+- Changed cookie getting to iecook
+
 ## Version 0.7.0 (2023/08/14)
 
 - Added colors to chat

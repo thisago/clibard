@@ -9,14 +9,14 @@ from std/sugar import collect
 import std/terminal
 
 import pkg/bard
-import pkg/gookie
+import pkg/iecook
 
 var testedSessions: seq[string]
 
 proc startNewBardChat(debugLog = false): BardAiChat =
   if debugLog:
     echo "Trying to get your Google sessions"
-  let cookiesList = getGoogleCookies()
+  let cookiesList = ieCook "https;//google.com"
   for cookies in cookiesList:
     if cookies.context in testedSessions:
       if debugLog:
