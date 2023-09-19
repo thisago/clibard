@@ -19,7 +19,7 @@ This is a Google Bard CLI application interface.
 Core libs used
 
 - [Google Bard](https://github.com/thisago/bard) - Google Bard batchexecute implementation
-- [Gookie](https://github.com/thisago/gookie) - Google cookie getter
+- [iecook](https://github.com/thisago/iecook) - Session cookie getter
 
 ## Setup
 
@@ -29,9 +29,9 @@ You can install using nimble, the [Nim](https://nim-lang.org) package manager:
 nimble install clibard
 ```
 
-To Gookie be able to get your Google session, you'll need to install an client
+To iecook be able to get your Google session, you'll need to install an client
 extension in your browser.
-See the [tutorial at Gookie repository](https://github.com/thisago/gookie#usage)
+See the [tutorial at iecook repository](https://github.com/thisago/iecook#setup)
 
 Now, just [login into your Google account](https://accounts.google.com) and keep
 open the browser
